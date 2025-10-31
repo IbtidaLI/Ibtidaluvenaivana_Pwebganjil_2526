@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Calon Mahasiswa Baru</title>
+        <style>
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 800px;
+            background-color: #fff;
+        }
+
+        td {
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        input[type="text"], select {
+            width: 80%;
+            padding: 5px;
+        }
+
+        .judul {
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tombol {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table border="1">
+            <tr>
+                <td colspan="2" class="judul">Formulir Pendaftaran Calon Mahasiswa Baru</td>
+            </tr>
+            <tr>
+                <td>Nama</td>
+                <td><input type="text" id="nama"></td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td><input type="text" id="alamat"></td>
+            </tr>
+            <tr>
+                <td>Asal Sekolah</td>
+                <td>
+                    <select id="sekolah">
+                        <option value="SMP">SMP</option>
+                        <option value="SMA">SMA</option>
+                        <option value="SMK">SMK</option>
+                        <option value="Universitas">Universitas</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Jurusan</td>
+                <td>
+                    <input type="checkbox" name="jurusan" value="Teknik Informatika"> Teknik Informatika<br>
+                    <input type="checkbox" name="jurusan" value="Manajemen"> Manajemen Informatik<br>
+                </td>
+            </tr>
+            <tr>
+                <td>Jenjang</td>
+                <td>
+                    <input type="radio" name="jenjang" value="Diploma"> Diploma
+                    <input type="radio" name="jenjang" value="Sarjana"> Sarjana
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tombol">
+                    <button type="button" onclick="kirim()">Simpan</button>
+                    <button type="reset">Reset</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Nama</td>
+                <td id="outNama"></td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td id="outAlamat"></td>
+            </tr>
+            <tr>
+                <td>Asal Sekolah</td>
+                <td id="outSekolah"></td>
+            </tr>
+            <tr>
+                <td>Jurusan</td>
+                <td id="outJurusan"></td>
+            </tr>
+            <tr>
+                <td>Jenjang</td>
+                <td id="outJenjang"></td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function kirim() {
+            const nama = document.getElementById("nama").value;
+            const alamat = document.getElementById("alamat").value;
+            const sekolah = document.getElementById("sekolah").value;
+            const jurusanList = document.querySelectorAll('input[name="jurusan"]:checked');
+            let jurusan = [];
+            jurusanList.forEach(j => jurusan.push(j.value));
+            const jenjang = document.querySelector('input[name="jenjang"]:checked')?.value || "Belum dipilih";
+            document.getElementById("outNama").innerText = nama;
+            document.getElementById("outAlamat").innerText = alamat;
+            document.getElementById("outSekolah").innerText = sekolah;
+            document.getElementById("outJurusan").innerText = jurusan.length > 0 ? jurusan.join(", ") : "Belum dipilih";
+            document.getElementById("outJenjang").innerText = jenjang;
+        }
+    </script>
+</body>
+</html>
